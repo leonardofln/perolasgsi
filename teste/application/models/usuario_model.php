@@ -26,7 +26,7 @@ class Usuario_model extends CI_Model {
 	function avisaUsuarios() {
 		$listaUsuarios = $this->lista();
 		foreach ($listaUsuarios as $usuario) {
-			if ($usuario->deSenha != 'INATIVO') {
+			if ($usuario->flStatus == 1) {
 				$this->email->clear();
 			
 				$this->email->to($usuario->deEmail);

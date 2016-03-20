@@ -159,7 +159,7 @@
 		  <option value="">Selecione...</option>
 		  <?php 
 		  foreach ($listaUsuarios as $usuario) {
-		  		if ($usuario->deSenha != 'INATIVO') {
+		  		if ($usuario->flStatus == 1) {
 		  	   		echo '<option value="' . $usuario->cdUsuario . '">' . $usuario->deNome . '</option>';
 		  	   	}
 		  }
@@ -189,7 +189,7 @@
 		  <option value="todos">todos</option>
 		  <?php 
 		  foreach ($listaUsuarios as $usuario) {
-		  		if ($usuario->deSenha != 'INATIVO') {
+		  		if ($usuario->flStatus == 1) {
 		  	   		echo '<option value="' . $usuario->cdUsuario . '">' . $usuario->deNome . '</option>';
 		  	   	}
 		  }
