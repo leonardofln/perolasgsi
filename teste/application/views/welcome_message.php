@@ -159,7 +159,9 @@
 		  <option value="">Selecione...</option>
 		  <?php 
 		  foreach ($listaUsuarios as $usuario) {
-		  	   echo '<option value="' . $usuario->cdUsuario . '">' . $usuario->deNome . '</option>';
+		  		if ($usuario->deSenha != 'INATIVO') {
+		  	   		echo '<option value="' . $usuario->cdUsuario . '">' . $usuario->deNome . '</option>';
+		  	   	}
 		  }
 		  ?>
 		 </select>
@@ -187,7 +189,9 @@
 		  <option value="todos">todos</option>
 		  <?php 
 		  foreach ($listaUsuarios as $usuario) {
-		  	   echo '<option value="' . $usuario->deNome . '">' . $usuario->deNome . '</option>';
+		  		if ($usuario->deSenha != 'INATIVO') {
+		  	   		echo '<option value="' . $usuario->cdUsuario . '">' . $usuario->deNome . '</option>';
+		  	   	}
 		  }
 		  ?>
 		 </select>
