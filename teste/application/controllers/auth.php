@@ -38,15 +38,15 @@ class Auth extends CI_Controller {
 		$usuario = $this->session->userdata('usuario');
 		
 		$dados = array(
-			'dtAcesso'  => date('Y-m-d H:i:s'),
-			'deLink'    => current_url(),
-			'deAcao'    => 'Validando dados de acesso',
-			'deIp'      => $this->session->userdata('ip_address'),
-			'deSession' => $this->session->userdata('session_id'),
-			'cdUsuario'   => $usuario->cdUsuario,
-			'deNome'      => $usuario->deNome,
-			'deSobrenome' => $usuario->deSobrenome,
-			'deEmail'     => $usuario->deEmail
+			'dtAcesso'    => date('Y-m-d H:i:s'),
+			'deLink'      => current_url(),
+			'deAcao'      => 'Validando dados de acesso',
+			'deIp'        => $this->session->userdata('ip_address'),
+			'deSession'   => $this->session->userdata('session_id'),
+			'cdUsuario'   => (empty($usuario->cdUsuario))?null:$usuario->cdUsuario,
+			'deNome'      => (empty($usuario->deNome))?null:$usuario->deNome,
+			'deSobrenome' => (empty($usuario->deSobrenome))?null:$usuario->deSobrenome,
+			'deEmail'     => (empty($usuario->deEmail))?null:$usuario->deEmail
 		);
 		$this->acesso_model->insere($dados);
 		
@@ -65,15 +65,15 @@ class Auth extends CI_Controller {
 		$usuario = $this->session->userdata('usuario');
 		
 		$dados = array(
-			'dtAcesso'  => date('Y-m-d H:i:s'),
-			'deLink'    => current_url(),
-			'deAcao'    => 'Saindo do sistema',
-			'deIp'      => $this->session->userdata('ip_address'),
-			'deSession' => $this->session->userdata('session_id'),
-			'cdUsuario'   => $usuario->cdUsuario,
-			'deNome'      => $usuario->deNome,
-			'deSobrenome' => $usuario->deSobrenome,
-			'deEmail'     => $usuario->deEmail
+			'dtAcesso'    => date('Y-m-d H:i:s'),
+			'deLink'      => current_url(),
+			'deAcao'      => 'Saindo do sistema',
+			'deIp'        => $this->session->userdata('ip_address'),
+			'deSession'   => $this->session->userdata('session_id'),
+			'cdUsuario'   => (empty($usuario->cdUsuario))?null:$usuario->cdUsuario,
+			'deNome'      => (empty($usuario->deNome))?null:$usuario->deNome,
+			'deSobrenome' => (empty($usuario->deSobrenome))?null:$usuario->deSobrenome,
+			'deEmail'     => (empty($usuario->deEmail))?null:$usuario->deEmail
 		);
 		$this->acesso_model->insere($dados);
 		

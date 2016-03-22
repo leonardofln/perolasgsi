@@ -18,10 +18,10 @@ class Estatisticas extends CI_Controller {
 			'deAcao'      => 'Tela de estatisticas',
 			'deIp'        => $this->session->userdata('ip_address'),
 			'deSession'   => $this->session->userdata('session_id'),
-			'cdUsuario'   => $usuario->cdUsuario,
-			'deNome'      => $usuario->deNome,
-			'deSobrenome' => $usuario->deSobrenome,
-			'deEmail'     => $usuario->deEmail
+			'cdUsuario'   => (empty($usuario->cdUsuario))?null:$usuario->cdUsuario,
+			'deNome'      => (empty($usuario->deNome))?null:$usuario->deNome,
+			'deSobrenome' => (empty($usuario->deSobrenome))?null:$usuario->deSobrenome,
+			'deEmail'     => (empty($usuario->deEmail))?null:$usuario->deEmail
 		);
 		$this->acesso_model->insere($dados);
 		
