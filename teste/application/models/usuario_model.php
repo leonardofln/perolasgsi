@@ -30,9 +30,9 @@ class Usuario_model extends CI_Model {
 				$this->email->clear();
 			
 				$this->email->to($usuario->deEmail);
-				$this->email->from('noreply@testador.info');
+				$this->email->from('noreply@perolasgsi.com.br');
 				$this->email->subject('Pérolas: nova frase cadastrada!');
-				$this->email->message($usuario->deNome.',<br /><br />Foi cadastrada agora uma nova frase em http://testador.info/teste/<br /><br />\o/');
+				$this->email->message($usuario->deNome.',<br /><br />Foi cadastrada agora uma nova frase em http://www.perolasgsi.com.br<br /><br />\o/');
 				$this->email->send();
 			}
 		}
