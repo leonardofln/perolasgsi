@@ -1,13 +1,13 @@
 <?php
-class Usuario_model extends CI_Model {
+class Acesso_model extends CI_Model {
 
 	function __construct() {
 		parent::__construct();
 		
-		$this->load->library('email');
+		//$this->load->library('email');
 		
-		$config['mailtype'] = 'html';
-		$this->email->initialize($config);
+		//$config['mailtype'] = 'html';
+		//$this->email->initialize($config);
 	}
 	
 	function busca($cdUsuario) {
@@ -23,24 +23,8 @@ class Usuario_model extends CI_Model {
 		return $retorno;
 	}
 	
-	function avisaUsuarios() {
-		$listaUsuarios = $this->lista();
-		foreach ($listaUsuarios as $usuario) {
-			if ($usuario->flStatus == 1) {
-				$this->email->clear();
-				
-				$this->email->to($usuario->deEmail);
-				$this->email->from('noreply@perolasgsi.com.br');
-				$this->email->subject('Pérolas: nova frase cadastrada!');
-				$this->email->message($usuario->deNome.',<br /><br />Foi cadastrada agora uma nova frase em http://www.perolasgsi.com.br/<br /><br />\o/');
-				$this->email->send();
-			}
-		}
-	}
-	
 	function insere($dados) {
-		//$this->db->where('cdUsuario', $cdUsuario);
-		//$this->db->update('au_usuario', $dados);
+		$this->db->insert('est_acesso', $dados);
 	}
 	
 	function atualiza($cdUsuario, $dados) {

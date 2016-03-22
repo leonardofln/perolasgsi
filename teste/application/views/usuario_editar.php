@@ -35,8 +35,8 @@
           <a class="brand" href="<?php echo site_url('/') ?>">P&eacute;rolas <span class="label">BETA!</span></a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="<?php echo site_url('/') ?>">In&iacute;cio</a></li>
-              <!-- <li><a href="#about">Ranking</a></li> -->
+              <li><a href="<?php echo site_url('/') ?>"><i class="icon-home icon-white"></i> In&iacute;cio</a></li>
+              <li><a href="<?php echo site_url('/estatisticas/') ?>"><i class="icon-file icon-white"></i> Estat&iacute;sticas</a></li>
               <li class="dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> <?php echo $dadosUsuarioLogado->deNome; ?> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -58,15 +58,8 @@
 	   <?php echo validation_errors(); ?>
        
        <form class="form-horizontal" action="<?php echo site_url('/usuario/atualizar/') ?>" method="post">
-        <input type="hidden" name="cdUsuario" value="<?php echo $dadosUsuarioBanco->cdUsuario; ?>">
 	    <fieldset>
 		 <legend>Dados pessoais</legend>
-	     <div class="control-group">
-	      <label class="control-label">C&oacute;digo</label>
-	      <div class="controls">
-	       <span class="input-mini uneditable-input"><?php echo $dadosUsuarioBanco->cdUsuario; ?></span>
-	      </div>
-	     </div>
 	     <div class="control-group">
 	      <label class="control-label" for="deNome">Nome</label>
 	      <div class="controls">

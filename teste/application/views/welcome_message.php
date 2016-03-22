@@ -35,8 +35,8 @@
           <a class="brand" href="<?php echo site_url('/') ?>">P&eacute;rolas <span class="label">BETA!</span></a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="<?php echo site_url('/') ?>">In&iacute;cio</a></li>
-              <!-- <li><a href="#about">Ranking</a></li> -->
+              <li class="active"><a href="<?php echo site_url('/') ?>"><i class="icon-home icon-white"></i> In&iacute;cio</a></li>
+              <li><a href="<?php echo site_url('/estatisticas/') ?>"><i class="icon-file icon-white"></i> Estat&iacute;sticas</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> <?php echo $dadosUsuarioLogado->deNome; ?> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -159,7 +159,7 @@
 		  <option value="">Selecione...</option>
 		  <?php 
 		  foreach ($listaUsuarios as $usuario) {
-		  		if ($usuario->flStatus == 1) {
+		  	    if ($usuario->flStatus == 1) {
 		  	   		echo '<option value="' . $usuario->cdUsuario . '">' . $usuario->deNome . '</option>';
 		  	   	}
 		  }
@@ -189,8 +189,8 @@
 		  <option value="todos">todos</option>
 		  <?php 
 		  foreach ($listaUsuarios as $usuario) {
-		  		if ($usuario->flStatus == 1) {
-		  	   		echo '<option value="' . $usuario->cdUsuario . '">' . $usuario->deNome . '</option>';
+		  	    if ($usuario->flStatus == 1) {
+		  	   		echo '<option value="' . $usuario->deNome . '">' . $usuario->deNome . '</option>';
 		  	   	}
 		  }
 		  ?>

@@ -7,14 +7,28 @@ class Welcome extends CI_Controller {
 		$this->load->model('auth_model');
 		$this->load->model('frase_model');
 		$this->load->model('usuario_model');
+		$this->load->model('acesso_model');
 	}
 	
 	function index($cdMsg = null)	{
+		$usuario = $this->session->userdata('usuario');
+		
+		$dados = array(
+			'dtAcesso'  => date('Y-m-d H:i:s'),
+			'deLink'    => current_url(),
+			'deAcao'    => 'Tela inicial',
+			'deIp'      => $this->session->userdata('ip_address'),
+			'deSession' => $this->session->userdata('session_id'),
+			'cdUsuario' => $usuario->cdUsuario,
+			'deNome' => $usuario->deNome,
+			'deSobrenome' => $usuario->deSobrenome,
+			'deEmail' => $usuario->deEmail
+		);
+		$this->acesso_model->insere($dados);
+		
 		if (!$this->auth_model->estahAutenticado()) {
 			redirect('/auth/form/');
 		} else {
-			$usuario = $this->session->userdata('usuario');
-			
 			$frases = $this->frase_model->busca();
 			
 			$frasesTemp = array();
@@ -33,11 +47,24 @@ class Welcome extends CI_Controller {
 	}
 	
 	function votou($cdFrase) {
+		$usuario = $this->session->userdata('usuario');
+		
+		$dados = array(
+			'dtAcesso'  => date('Y-m-d H:i:s'),
+			'deLink'    => current_url(),
+			'deAcao'    => 'Verificando se ja votou',
+			'deIp'      => $this->session->userdata('ip_address'),
+			'deSession' => $this->session->userdata('session_id'),
+			'cdUsuario' => $usuario->cdUsuario,
+			'deNome' => $usuario->deNome,
+			'deSobrenome' => $usuario->deSobrenome,
+			'deEmail' => $usuario->deEmail
+		);
+		$this->acesso_model->insere($dados);
+		
 		if (!$this->auth_model->estahAutenticado()) {
 			redirect('/auth/form/');
 		} else {
-			$usuario = $this->session->userdata('usuario');
-			
 			$jaVotou = $this->frase_model->votou($cdFrase, $usuario->cdUsuario);
 			
 			echo $jaVotou;
@@ -45,35 +72,72 @@ class Welcome extends CI_Controller {
 	}
 	
 	function gostei($cdFrase) {
+		$usuario = $this->session->userdata('usuario');
+		
+		$dados = array(
+			'dtAcesso'  => date('Y-m-d H:i:s'),
+			'deLink'    => current_url(),
+			'deAcao'    => 'Votando gostei',
+			'deIp'      => $this->session->userdata('ip_address'),
+			'deSession' => $this->session->userdata('session_id'),
+			'cdUsuario' => $usuario->cdUsuario,
+			'deNome' => $usuario->deNome,
+			'deSobrenome' => $usuario->deSobrenome,
+			'deEmail' => $usuario->deEmail
+		);
+		$this->acesso_model->insere($dados);
+		
 		if (!$this->auth_model->estahAutenticado()) {
 			redirect('/auth/form/');
 		} else {
-			$usuario = $this->session->userdata('usuario');
-			
 			$retorno = $this->frase_model->gostei($cdFrase, $usuario->cdUsuario);
-			
 			echo $retorno;
 		}
 	}
 	
 	function naoGostei($cdFrase) {
+		$usuario = $this->session->userdata('usuario');
+		
+		$dados = array(
+			'dtAcesso'  => date('Y-m-d H:i:s'),
+			'deLink'    => current_url(),
+			'deAcao'    => 'Votando nao gostei',
+			'deIp'      => $this->session->userdata('ip_address'),
+			'deSession' => $this->session->userdata('session_id'),
+			'cdUsuario' => $usuario->cdUsuario,
+			'deNome' => $usuario->deNome,
+			'deSobrenome' => $usuario->deSobrenome,
+			'deEmail' => $usuario->deEmail
+		);
+		$this->acesso_model->insere($dados);
+		
 		if (!$this->auth_model->estahAutenticado()) {
 			redirect('/auth/form/');
 		} else {
-			$usuario = $this->session->userdata('usuario');
-			
 			$retorno = $this->frase_model->naoGostei($cdFrase, $usuario->cdUsuario);
-				
 			echo $retorno;
 		}
 	}
 	
 	function cadastrar() {
+		$usuario = $this->session->userdata('usuario');
+		
+		$dados = array(
+			'dtAcesso'  => date('Y-m-d H:i:s'),
+			'deLink'    => current_url(),
+			'deAcao'    => 'Tela de cadastro de frases',
+			'deIp'      => $this->session->userdata('ip_address'),
+			'deSession' => $this->session->userdata('session_id'),
+			'cdUsuario' => $usuario->cdUsuario,
+			'deNome' => $usuario->deNome,
+			'deSobrenome' => $usuario->deSobrenome,
+			'deEmail' => $usuario->deEmail
+		);
+		$this->acesso_model->insere($dados);
+		
 		if (!$this->auth_model->estahAutenticado()) {
 			redirect('/auth/form/');
 		} else {
-			$usuario = $this->session->userdata('usuario');
-			
 			if ($usuario->cdTipo == 2) {
 				$cdUsuario = $this->input->post('cdUsuario');
 				$deAcao = $this->input->post('deAcao');
@@ -99,11 +163,24 @@ class Welcome extends CI_Controller {
 	}
 	
 	function excluir($cdFrase) {
+		$usuario = $this->session->userdata('usuario');
+		
+		$dados = array(
+			'dtAcesso'    => date('Y-m-d H:i:s'),
+			'deLink'      => current_url(),
+			'deAcao'      => 'Exclusao de frase',
+			'deIp'        => $this->session->userdata('ip_address'),
+			'deSession'   => $this->session->userdata('session_id'),
+			'cdUsuario'   => $usuario->cdUsuario,
+			'deNome'      => $usuario->deNome,
+			'deSobrenome' => $usuario->deSobrenome,
+			'deEmail'     => $usuario->deEmail
+		);
+		$this->acesso_model->insere($dados);
+		
 		if (!$this->auth_model->estahAutenticado()) {
 			redirect('/auth/form/');
 		} else {
-			$usuario = $this->session->userdata('usuario');
-			
 			if ($usuario->cdTipo == 2) {
 				$retorno = $this->frase_model->excluir($cdFrase);
 		

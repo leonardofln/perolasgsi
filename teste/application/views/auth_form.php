@@ -56,7 +56,7 @@
 
       <form class="form-signin" action="<?php echo site_url("auth/autenticar");?>" method="post">
         <h2 class="form-signin-heading">Autentica&ccedil;&atilde;o</h2>
-        <input type="text" name="login" class="input-block-level" placeholder="informe seu e-mail">
+        <input type="text" name="login" class="input-block-level" placeholder="informe seu e-mail" value="<?php echo $login; ?>">
         <input type="password" name="senha" class="input-block-level" placeholder="informe sua senha">
         <button class="btn btn-large btn-primary" type="submit">Enviar</button>
       </form>

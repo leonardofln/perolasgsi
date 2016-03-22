@@ -95,6 +95,32 @@ class Frase_model extends CI_Model {
 		return true;
 	}
 	
+	function top10MaisVotadas() {
+		$this->db->select('cdFrase', false);
+		$this->db->from('per_frase_votacao');
+		$this->db->where('flTipo', 1); // gostei
+		$this->db->group_by('cdFrase');
+		$this->db->order_by('count(cdUsuario) desc');
+		$this->db->limit(10);
+		$query = $this->db->get();
+		$ret = $query->result();
+		
+		$aFrases = array();
+		foreach ($ret as $frase) {
+			$aFrases[] = $this->buscaPorCodigo($frase->cdFrase);
+		}
+		
+		return $aFrases;
+	}
+	
+	function buscaPorCodigo($cdFrase) {
+		$this->db->select('cdFrase, deFrase, (select count(*) from per_frase_votacao where cdFrase = f.cdFrase and flTipo = 1) as nrGostei, (select count(*) from per_frase_votacao where cdFrase = f.cdFrase and flTipo = 2) as nrNaoGostei, cdUsuario, date_format(dtRegistro, \'%d/%m/%Y\') as dtRegistro', false);
+		$this->db->where('cdFrase', $cdFrase);
+		$query = $this->db->get('per_frase f');
+		$retorno = $query->result();
+		return $retorno[0];
+	}
+	
 	/* function insere($dados) {
 		//$this->db->where('cdUsuario', $cdUsuario);
 		//$this->db->update('au_usuario', $dados);
