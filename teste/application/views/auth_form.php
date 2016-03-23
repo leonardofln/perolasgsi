@@ -59,6 +59,8 @@
         <input type="text" name="login" class="input-block-level" placeholder="informe seu e-mail" value="<?php echo $login; ?>">
         <input type="password" name="senha" class="input-block-level" placeholder="informe sua senha">
         <button class="btn btn-large btn-primary" type="submit">Enviar</button>
+        <br><br>
+        <a href="javascript:alert('Seu tanso!');">Esqueceu a senha?</a>
       </form>
 
     </div> <!-- /container -->
